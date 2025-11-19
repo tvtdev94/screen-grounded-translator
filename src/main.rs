@@ -21,6 +21,7 @@ use image::ImageBuffer;
 use config::{Config, load_config};
 use tray_icon::{TrayIconBuilder, menu::{Menu, MenuItem}};
 
+
 pub struct AppState {
     pub config: Config,
     pub original_screenshot: Option<ImageBuffer<image::Rgba<u8>, Vec<u8>>>,
@@ -104,6 +105,8 @@ fn main() -> eframe::Result<()> {
     )
 }
 
+
+
 fn run_hotkey_listener() {
     unsafe {
         let instance = GetModuleHandleW(None).unwrap();
@@ -161,6 +164,8 @@ unsafe extern "system" fn hotkey_proc(hwnd: HWND, msg: u32, wparam: WPARAM, lpar
         _ => DefWindowProcW(hwnd, msg, wparam, lparam),
     }
 }
+
+
 
 fn capture_full_screen() -> anyhow::Result<ImageBuffer<image::Rgba<u8>, Vec<u8>>> {
     unsafe {
